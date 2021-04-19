@@ -1,0 +1,10 @@
+fernando carneiro
+exemplo esp32
+123456
+    !@#$%*()
+
+    espaços 
+    0x00
+    0x01
+    0x02
+
