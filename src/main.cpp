@@ -17,8 +17,12 @@
 */
 
 #include <Arduino.h>
+#include <dbg.h>
+#include <project_defines.h>
+
 #include <SPI.h>
 #include <SD.h>
+#include "SdFat.h"
 #include "AutoAnalogAudio.h"
 
 /******** User Config ************************************/
@@ -45,7 +49,7 @@ bool firstADC = false;
 
 void setup() {
 
-  Serial.begin(57600);
+  Serial.begin(BAUD);
 
   if (!SD.begin()) {
     Serial.println("SD init failed!");
@@ -116,6 +120,7 @@ void loop() {
       case '4':  playAudio("/M16b24kS.wav"); break; //Play  16bit, 44khz, Stereo
       //Note: Audio playback should be stopped before engaging the ADC->DAC output
       case '5':  doADC = !doADC; if (doADC) {
+          Serial.print("starting records ");
           firstADC = true;
           aaAudio.setSampleRate(88200);
           aaAudio.dacBitsPerSample = 8;
